@@ -368,6 +368,51 @@ contract MyToken is ERC20Token{
 }
 ```
 
+```javascript
+pragma solidity ^0.6.0;
+
+contract Ownable {
+    address owner;   
+
+    constructor () public {
+        owner = msg.sender;
+    } 
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "must be owner");
+        _;
+    }
+}
+
+contract SecretVault {
+    string secret;
+
+    constructor (string memory _secret) public {
+        secret = _secret;
+    }
+
+    function getSecret() public view returns(string memory) {
+        return secret;
+    } 
+    
+}
+
+contract Inherit is Ownable {
+    address secretVault;
+
+    constructor (string memory _secret) public {
+        SecretVault _secretVault = new SecretVault(_secret);
+        secretVault = address(_secretVault);
+        super;
+    }
+
+    function getSecret() public view onlyOwner returns(string memory) {
+        SecretVault _secretVault = SecretVault(secretVault);
+        return _secretVault.getSecret();
+    }   
+}
+```
+
 ### Library
 
 ```javascript
@@ -472,6 +517,44 @@ contract Loop {
 
     function isOwner() public view returns(bool) {
         return (msg.sender == owner);
+    }
+}
+```
+### Payment
+
+```javascript
+pragma solidity ^0.6.0;
+
+contract HotelRoom {
+    enum Status { Vacant, Occupied }
+
+    Status currentStatus;
+    address payable public owner;
+
+    event Occupy(address _occupant, uint _value);
+
+    constructor () public {
+        //user who calls this function
+        owner = msg.sender;
+        currentStatus = Status.Vacant;
+    }
+
+    modifier onlyWhileVacant {
+         require(currentStatus == Status.Vacant, "Currently occupied");
+         _;
+    }
+
+    modifier costs (uint _amount) {
+        require( msg.value >= _amount, "Not enough Ether provided");
+        _;
+    }
+
+    /*receive(): will be triggered whenever you pay to this smart contract.
+     send ether to the address, then this function will be called*/
+    receive() external payable onlyWhileVacant costs(2 ether) {
+        currentStatus = Status.Occupied;
+        owner.transfer(msg.value);
+        emit Occupy(msg.sender, msg.value);
     }
 }
 ```

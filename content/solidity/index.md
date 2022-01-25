@@ -60,6 +60,7 @@ contract DataTypes{
     get() function 없이도 value에 접근할 수 있다.*/
     
     // value값을 바꾸지 않고 그대로 return 하므로 view를 사용한다. (views value, not change value)
+    // string은 reference를 저장하기 때문에 memory 키워드를 같이 써줘야한다.
     function get() public view returns(string memory){
         return value;
     }
@@ -81,6 +82,10 @@ contract DataTypes{
  ```
 
  ### Arrays
+
+ - array 에서 값을 제거하는 방법으로는 pop 과 delete가 있는데, pop은 가장 최신 값을 지우면 length도 줄어드는 반면에 delete는 0이나 null을 넣어 기존 값을 비우기 때문에 원하는 인덱스 값을 제거하지만 length는 줄어들지 않는다.
+
+ - 배열 안 문자열 검색 혹은 비교시 solidity에서는 string을 직접적으로 비교할 수 없고 string을 byte화, keccak256을 이용해 다시 새히화 해서 비교해야한다.
 
  ```javascript
 pragma solidity ^0.6.0;
@@ -113,6 +118,8 @@ contract Arrays {
 ```
 
 ### Mappings
+
+- array 는 length 값을 구할 수 있지만 mapping은 불가능하다.
 
 ``` javascript
 contract Mappings {
@@ -175,6 +182,8 @@ contract Modifier{
 
         //require: triggers error and revert trasaction if false( no gas fee )
         require(msg.sender == owner);   
+
+        // 아래는 이부분에 함수를 넣는다는 의미이다.
         _; 
     }
 
@@ -186,6 +195,8 @@ contract Modifier{
 
     constructor() public {
         //msg.sender is account that deploys the smart contract
+        /*contract가 실행될 때 constructor를 가장 먼저 만나되는데 실행되며
+        배포한 주소를 owner에 넣게된다.*/
         owner = msg.sender;
     }
     //modifier, only the owner can call function(any other count is impossible)
@@ -253,6 +264,10 @@ contract MyContract{
     /*solidity requires explicitness 
     whenever you are declaring an address that can accept ether 
     and set up smart contract*/
+    
+    /*payable: 코인과 상호작용, 즉 송금시 사용되는 키워드로 
+    send, transfer, call 을 이용하여 이더를 보낼 때 이 키워드가 필요하며
+    주로 함수, 주소, 생성자에 붙여서 사용된다.*/
     address payable wallet;
 
     //can get event stream for event
@@ -558,11 +573,138 @@ contract HotelRoom {
     }
 }
 ```
+
+### Indexed
+```javascript
+
+/*event 와 emit을 사용하여 블록에 특정 값을 기록할 수 있는데,
+블록은 게속 생성되고 여러 이벤트가 겹치게될 때 특정한 이벤트를 가져오고 싶은 경우 
+사용된다.*/
+
+contract Index {
+    event tracker(uint256 num, string str);
+    event tracker2(uint256 indexed num, string str);
+
+    uint256 num = 0;
+
+    function PushEvent(string memory _str) public {
+        emit tracker(num, _str);
+        emit tracker2(num, _str);
+
+        num ++;
+    }
+}
+
+```
+
+### Error Handler
+
+```javascript
+/*assert: gas를 다 소비한 후 특정한 조건에 부합하지 않으면 엘러를 발생시킨다. 
+내부 에러 테스트 용도, 불변성 체크 용도로 사용*/
+assert(조건문)
+
+//revert: 조건 없이 에러를 발생시키고, gas를 환불시켜준다.
+revert(에러메세지)
+
+//require: 특정한 조건에 부합하지 않으면 에러를 발생히키고 gas를 환불해준댜.
+require(조건문, 에러메세지)
+
+/*try / catch: 위와는 다르게 에러 발생시 catch 문으로 넘긴 후
+에러 핸들링 코드를 따르며 프로그램이 끝나지 않는다.
+try/catch 문 안에서 assert/revert/require를 사용하여 에러가 난다면
+catch는 에러를 잡지 못하고 try/catch문 밖에서 사용하여 에러가 난다면
+에러를 핸들링할 수 있다.
+외부 스마트컨트랙트 함수를 부를 떄, 외부 스마트 컨트랙트를 생성할 때,
+스마트 컨트랙트 내의 함수를 부를 때 사용된다.
+*/
+
+function add(uint256 a, uint256 b) public returns(uint256) {
+    return a + b
+}
+
+contract tryCatch {
+    event catchErr(string _name, string _err)
+
+    function handleError (uint256 num, uint256 num2) public returns(uint256, bool) {
+        //해당 함수가 컨트랙트 내부에 존재할 경우 this.add()로 사용한다.
+        try add(num, num2) returns (uint256, value) {
+            return (value, true)
+
+        // catch Error(string memory reason): revert나 require를 통해 생성된 에러
+        // catch Panic(uint errorCode): assert를 통해 생성된 에러 
+        // catch (bytesmemorylowLevelData): 로우 레벨 에러
+        } catch  (string memory _err) {
+            emit catchErr("revert/require, _err)
+            return(0, false)
+        }
+    }
+}
+
+```
+
+### returns
+```javascript
+
+function add(uint256 num, uint256 num2) public returns(uint256) {
+    uint256 result = num + num2
+
+    return result
+}
+
+// 아래와 같이 return할 변수명을 선언해주면 함수 내부에서 새로 명시할 필요가 없어진다.
+function add(uint256 num, uint256 num2) public returns(uint256 result) {
+    result = num + num2
+
+    return result
+}
+
+```
+
+### Sending Ether
+
+- send: 2300 gas 소비, 성공 여부를 true, false로 리턴한다.
+
+- transfer: 2300 gas 소비, 실패시 에러 발생
+
+- call: 가변적인 gas 소비(gas 값 지정 가능), 성공 여부를 true, false로 리턴한다. 재진입 공격 위험이 있다. 송금할 때 뿐만 아니라 외부 스마트 컨트랙트를 부를 때도 사용할 수 있다.
+
+### keyword
+
+- balance: 특정 주소의 현재 이더 잔액으로 주소.balance로 사용된다.
+
+- mgs.sender: 스마트 컨트랙트와 상호 작용하는 주체
+
+- mgs.value: 송금하는 코인 value
+
+- payable: 코인과 상호작용, 즉 송금시 사용되는 키워드로 send, transfer, call 을 이용하여 이더를 보낼 때 이 키워드가 필요하며, 주로 함수, 주소, 생성자에 붙여서 사용된다.
+
+### fallback, receive
+
+#### fallback
+- 대비책 함수로 이름이 없고, external과 payable을 필수로 사용해아한다.
+
+- 0.6 버전 이후로 receive와 fallback으로 나뉘었는데, receive는 순수하게 이더만 받을 때 작동하며, fallback은 함수를 실항하며 이더를 보낼 때 불려준 함수가 없을 때 작동한다.
+
+```javascript
+//0.6 버전 이전
+function() external payable{}
+
+
+//0.6  버전 이후
+function() external {}
+
+fallback() external payable {}
+
+receive() external payable {}
+```
+
 ***
 
 [Ref]
 - [풀 영상 링크](https://www.youtube.com/watch?v=ipwxYa-F1uY)
 - [시리즈 영상 링크](https://www.youtube.com/watch?v=wJnXuCFVGFA&list=PLS5SEs8ZftgVnWHv2_mkvJjn5HBOkde3g&index=4)
+- [dayone](https://dayone.tistory.com/category/%EC%86%94%EB%A6%AC%EB%94%94%ED%8B%B0%20%EA%B9%A8%EB%B6%80%EC%88%98%EA%B8%B0%20-%20%EA%B8%B0%EB%B3%B8)
 
 
 ```toc

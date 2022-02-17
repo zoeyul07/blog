@@ -22,7 +22,7 @@ but, proof of stake: race를 위한 사람들중 단 한명만을 뽑아서 그 
 한 토큰을 다른 토큰으로 교환하고 싶을 경우 예전 방식을 이용하게 되면 갖고 있는 토큰을 원하는 가격에 교환하기 위해 해당 가격에 교환하길 원하는 사람이 나타나기까지 기다려야한다.
 
 liquidity pool은 50:50의 ratio로 두개의 asset을 담고있는 pool이고 Auto Market Maker 알고리즘 공식인 x*y=k의 사용한다.
-Inverstor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환하기를 원하는 사람이 토큰을 교환할 때 지불하는 fee를 얻을 수 있다.(pool에 재공되어있는 비율에 따라 inverstor들이 fee를 나눠갖게 된다.)
+Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환하기를 원하는 사람이 토큰을 교환할 때 지불하는 fee를 얻을 수 있다.(pool에 재공되어있는 비율에 따라 investor들이 fee를 나눠갖게 된다.)
 
 
 

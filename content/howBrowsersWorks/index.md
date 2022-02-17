@@ -126,8 +126,8 @@ categories: FrontEnd Web
 
 #### Build Render Tree
 
-DOM은 컨텐츠, CSSOM은 스타일 규칙을 설명하는 독립적인 개체이다. 각각의 개체를 가지고 화면에 픽셀을 찍기 위해서는 두 객체를 합쳐 Render Tree 를 만들어야한다.![]
-(https://images.velog.io/images/zoeyul/post/427be7c7-250f-4dd3-82ad-37e4ad83ff09/Screen%20Shot%202022-01-07%20at%201.33.06%20AM.png)
+DOM은 컨텐츠, CSSOM은 스타일 규칙을 설명하는 독립적인 개체이다. 각각의 개체를 가지고 화면에 픽셀을 찍기 위해서는 두 객체를 합쳐 Render Tree 를 만들어야한다.
+![](https://images.velog.io/images/zoeyul/post/427be7c7-250f-4dd3-82ad-37e4ad83ff09/Screen%20Shot%202022-01-07%20at%201.33.06%20AM.png)
 
 1.  DOM 트리의 루트에서 시작하여 표시되는 노드를 각각 traverse 한다.
 

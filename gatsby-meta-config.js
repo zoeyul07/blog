@@ -1,5 +1,5 @@
 module.exports = {
-  title: `zoeyul.com`,
+  title: `soeyul.com`,
   description: `seoyul's 개발일기`,
   language: `ko`, // `ko`, `en` => currently support versions for Korean and English
   siteUrl: `https://zoeyul.netlify.app`,

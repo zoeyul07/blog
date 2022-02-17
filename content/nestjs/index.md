@@ -21,7 +21,7 @@ categories: BackEnd
 
 ### setting
 
-```
+```jsx
  npm i -g @nestjs/cli
 
 //nest 설치 후 다음 명령어를 입력하면 폴더 이름을 묻는 질문과 함께 구조를 만들어 폴더가 생성된다.
@@ -50,8 +50,8 @@ nest new
 
 - create()메서드는 INestApplication Interface를 수행하는 application object를 반환하며, 해당 오브젝트는 다양한 methods set을 제공한다.
 
-```
-src/main.ts
+```typescript
+src / main.ts;
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
@@ -64,8 +64,8 @@ bootstrap();
 
 #### app.module.ts
 
-```
-src/app.module.ts
+```typescript
+src / app.module.ts;
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -76,7 +76,6 @@ import { AppService } from './app.service';
   providers: [AppService],
 })
 export class AppModule {}
-
 ```
 
 #### app.controller.ts
@@ -87,7 +86,7 @@ export class AppModule {}
 
 - 라우팅 경로는 해당 컨트롤러를 위해 선언된 prefix와, request decorator에 선언된 특정 경로와 결합되어서 결정된다.
 
-```
+```typescript
 src/app.controller.ts
 
 import { Controller, Get } from '@nestjs/common';
@@ -149,8 +148,8 @@ export class AppController {
 
 #### app.service.ts
 
-```
-src/app.service.ts
+```typescript
+src / app.service.ts;
 
 import { Injectable } from '@nestjs/common';
 
@@ -159,8 +158,8 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
-  getHi():string{
-  	return 'Hi nest '
+  getHi(): string {
+    return 'Hi nest ';
   }
 }
 ```
@@ -173,14 +172,14 @@ export class AppService {
 
 - 이러한 차이는 런타임에 이러한 메타데이터(class또는 interface로 정의된 DTO와 같은)에 접근해야 하는 Pipe와 같이 추가적인 가능성들을 더해주는 기능들이 있기 때문에 중요하다.
 
-```
+```jsx
  npm i class-validator class-transformer
 ```
 
 - ValidationPipe와 그걸로 검사하는 CreateMovieDto를 사용하여 typescript로 실시간 코드의 유효성을 체크할 수 있다.
 
-```
-create-movie.dto.ts
+```typescript
+create - movie.dto.ts;
 
 import { IsNumber, IsString } from 'class-validator';
 
@@ -196,8 +195,8 @@ export class CreateMovieDto {
 }
 ```
 
-```
-main.ts
+```typescript
+main.ts;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -215,7 +214,7 @@ bootstrap();
 
 - 유효하지 않는 데이터는 validator에 도달하지 않게 whitelist를 사용할 수 있고, forbidNonWhitelisted를 사용하여 request를 막을 수 있다.
 
-```
+```jsx
 {
     "statusCode": 400,
     "message": [
@@ -232,11 +231,11 @@ bootstrap();
 
 - mapped-types는 타입을 변환시키고 사용할 수 있게 한다.(DTO를 변환시키는 것을 도와준다.)
 
-```
+```jsx
 npm i @nestjs/mapped-types
 ```
 
-```
+```typescript
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateMovieDto } from './create-movie.dto';
 
@@ -257,8 +256,8 @@ export class UpdateMovieDto extends PartialType(CreateMovieDto) {}
 
 - 여러가지 모듈을 import 할 수 있고, nest.js가 앱을 구동하면 하나의 모듈로 생성해준다.
 
-```
-app.module.ts
+```typescript
+app.module.ts;
 
 import { Module } from '@nestjs/common';
 
@@ -270,7 +269,6 @@ import { MoviesModule } from './movies/movies.module';
   providers: [],
 })
 export class AppModule {}
-
 ```
 
 - providers: Nest의 injector에 의해 인스턴스화되고, 인스턴스들은 이 모듈 안에서 최소한으로 공유된다.
@@ -279,8 +277,8 @@ export class AppModule {}
 
 - exports: 다른 모듈에서 import 할 때 사용된다.
 
-```
-movies.module.ts
+```typescript
+movies.module.ts;
 
 import { Module, Global } from '@nestjs/common';
 import { MoviesController } from '../movies/movies.controller';
@@ -289,7 +287,6 @@ import { MoviesService } from '../movies/movies.service';
 @Global()
 @Module({ controllers: [MoviesController], providers: [MoviesService] })
 export class MoviesModule {}
-
 ```
 
 - 여러 Provider들 집합을 어디서든 제공해주고 싶다면 @Global()를 사용하여 모듈을 global로 만든다.
@@ -302,7 +299,7 @@ export class MoviesModule {}
 
 - provider를 두면 nest.js가 service를 import 하고 controller에 inject한다.
 
-```
+```typescript
 //movies.module.ts
 
 import { Module } from '@nestjs/common';
@@ -311,22 +308,12 @@ import { MoviesService } from '../movies/movies.service';
 
 @Module({ controllers: [MoviesController], providers: [MoviesService] })
 export class MoviesModule {}
-
 ```
 
-```
+```typescript
 //movies.controllers.ts
 
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Patch,
-  Body,
-  Query,
-} from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Patch, Body, Query } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
@@ -367,7 +354,7 @@ export class MoviesController {
 }
 ```
 
-```
+```typescript
 //movies.service.ts
 
 import { Injectable, NotFoundException } from '@nestjs/common';
@@ -383,7 +370,7 @@ export class MoviesService {
     return this.movies;
   }
   getOne(id: number): Movie {
-    const movie = this.movies.find(movie => movie.id === id);
+    const movie = this.movies.find((movie) => movie.id === id);
     if (!movie) {
       throw new NotFoundException(`movie with ID ${id} not found`);
     }
@@ -392,7 +379,7 @@ export class MoviesService {
 
   deleteOne(id: number) {
     this.getOne(id);
-    this.movies = this.movies.filter(movie => movie.id !== id);
+    this.movies = this.movies.filter((movie) => movie.id !== id);
   }
 
   create(movieData: CreateMovieDto) {
@@ -408,7 +395,6 @@ export class MoviesService {
     this.movies.push({ ...movie, ...updateData });
   }
 }
-
 ```
 
 ### Express on NestJS

@@ -22,15 +22,11 @@ categories: BackEnd
 
 ### WSGI
 
-![Screen Shot 2021-11-17 at 1.47.34 AM.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a966bda9-3e16-4656-8a74-d6a53b454a56/Screen_Shot_2021-11-17_at_1.47.34_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220113%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220113T172643Z&X-Amz-Expires=86400&X-Amz-Signature=fa2a3a1ff963e008a3eabac5431784b35304401900267daca680f74100139508&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202021-11-17%2520at%25201.47.34%2520AM.png%22&x-id=GetObject)
-
 python 어플리케이션, 스크립트가 웹 서버와 통신하기 위한 인터페이스로 CGI 디자인 패턴을 코태로 만들어진것이지만 실제 CGI와는 차이가 있다.
 
 웹서버와 어플리케이션 사이에 미들웨어 역할을 하며 기술적으로는 웹 서버도 wsgi에 대한 작동 코드가 필요하고 어플리케이션 또한 wsgi에 대한 작동 코드가 필요한 client-server model을 응용한 것이며, 웹 서버가 어플리케이션의 코드르 직접적으로 읽을 수 없으므로 중간의 미들웨어가 해당 코드를 읽어서 결과를 대신 반환해주는 역할을 한다.
 
 ### ASGI
-
-![Screen Shot 2021-11-17 at 1.47.54 AM.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/24d3f699-39c9-45cc-a609-cdac45a960e1/Screen_Shot_2021-11-17_at_1.47.54_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220113%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220113T172740Z&X-Amz-Expires=86400&X-Amz-Signature=e374bc08aa044059bb887fecaf941bb95cf9316af5e12e25f526c422dc6cb770&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202021-11-17%2520at%25201.47.54%2520AM.png%22&x-id=GetObject)
 
 python에서는 asyncio, coroutine 과 같은 비동기 처리를 지원한다. 그러나 wsgi는 동기 함수 처리만을 지원하여 여러 작업을 동시에 처리하는 것에 한계가 있기 때문에 웹 서비스의 대용량 트래픽 처리를 유연하게 처리하기 어렵다.
 
@@ -57,7 +53,7 @@ asgi는 Cython 기반으로 C++ 언어로 작성되어 매우 빠른 속도를 �
   - 파라미터 타입을 명시할 수있다.(파이썬 type hints)
   - 이로 인해 Type Check를 할 수 있으며, data의 validation을 자동으로 해주고 오류 시 error를 자동으로 생성한다.
 
-  ```jsx
+  ```python
   from typing import List, Dict
   from datetime import date
 
@@ -101,7 +97,7 @@ app: the object created inside of main.py with the line app = FastAPI().
 
 ## 기본 코드
 
-```jsx
+```python
 from typing import Optional
 from fastapi import FastAPI
 
@@ -123,7 +119,7 @@ The path /items/{item_id} has an optional str query parameter q.
 
 - 비동기처리가 필요하면 async와 await를 사용할 수 있다. 비동기로 호출이 필요한 함수를 def가 아닌 async def로 처리해주고 함수 호출하는 곳에 await를 걸어주어 데이터베이스 조회나 I/O를 처리해야 하는 곳에 사용해주면 된다.
 
-```jsx
+```python
 @app.get("/")
 async def read_root():
   return {"hello":"world"}

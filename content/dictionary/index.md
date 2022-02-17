@@ -36,6 +36,10 @@ Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환�
 
 ### impermanent loss
 
+### wrapped token
+token을 wrap해서 다른 블록체인에서 사용할 수 있게 한다. 각각의 블록체인들은 token을 갖고 있는데 해당 블록체인에 있는 token은 다른 블록체인에서 이용하기 어렵기떄문에 만들어졌다.
+Wrapped token은 100% token이 represent하고 있는 real asset이 backed된 토큰이다. (collateral 혹은 stable coin과 비슷한 의미를 지닌다.)
+
 
 
 ```toc

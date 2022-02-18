@@ -10,6 +10,8 @@ categories: BlockChain
 ## solidity
 *이 글은 freeCodeCamp의 [Solidity Tutorial](https://www.youtube.com/watch?v=ipwxYa-F1uY)와 Dapp University의 [Master Solidity](https://www.youtube.com/watch?v=v92oqiSKJQ8&list=PLS5SEs8ZftgVnWHv2_mkvJjn5HBOkde3g&index=5) 내용을 정리한 글입니다.
 
+아래 코드는 [Solidity Repository](https://github.com/zoeyul07/solidity)에서 확인할 수 있습니다.
+
 ### Data types
 
 ```javascript

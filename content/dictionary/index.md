@@ -16,6 +16,11 @@ proof of work: race를 위해 사람들이 줄지어있다고 가정했을 때 �
 
 but, proof of stake: race를 위한 사람들중 단 한명만을 뽑아서 그 race를 진행하게 하여 완료 후 reward를 받게 되고 reward를 받지 못한 사람들은 에너지를 낭비하지 않게 된다.
 
+### staking 
+proof of work에 참여하기 위해서는 coin을 담보로 lock을 걸어서 사용하지 못하게 하고 network가 mining을 할 수 있도록 선택할 때까지 기다린다. 후에 선택되어 성공적으로 mining을 하게 된다면 Staking reward를 받게 된다. 만약 틀리게 되면 locked 된 코인을 다른 참여자에게 나눠주게 된다.
+
+코인을 담보처럼 locking up을 하는 것을 staking이라고 한다.
+
 ### liquidity pool
 한 토큰을 다른 토큰으로 교환하고 싶을 경우 예전 방식을 이용하게 되면 갖고 있는 토큰을 원하는 가격에 교환하기 위해 해당 가격에 교환하길 원하는 사람이 나타나기까지 기다려야한다.
 
@@ -28,7 +33,7 @@ Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환�
 ### arbitrage trading
 한 pool 에서 trader 대량으로 ether를 제공하여 ether 가격이 낮아져서 250달러인데  다른 pool에서 ether를 300달러에 팔 수 있다면 해당 pool에서 ether를 구매해서 다른 pool에 차액을 얻고 파는 방식을 말한다.
 
-### staking 
+
 
 ### mining pool
 
@@ -52,6 +57,14 @@ ETH의 가격과 트랜잭션 가격을 분리함으로써 트랜잭션 비용�
 0^9 wei는 Gwei이며 Gwei는 가스 (네트워크 거래 수수료)에 대해 말할 때 가장 일반적으로 사용된다. 가스 비용이 0.000000001 이더라고 말하기보다는 1gwei라고 간편하게 말할 수 있다.
 
 wei에서 시작해서 10^n 으로 올리거나 이더에서 소수점으로 내려서 액면가를 표현한다.
+
+1 Ether = 1,000,000,000,000,000,000 WEI = 1 (EXA)WEI
+1 (MILLI)ETHER = 0.001 ETHER1,000,000,000,000,000 WEI = 1 (PETA)WEI
+1 (MICRO)ETHER = 0.000001 ETHER1,000,000,000,000 WEI = 1 (TERA)WEI
+1 (Nano)ETHER = 0.000000001 ETHER1,000,000,000 WEI = 1 (GIGA)WEI
+1 (PICO)ETHER = 0.000000000001 ETHER1,000,000 WEI = 1 (MEGA)WEI
+1 (FEMTO)ETHER = 0.000000000000001 ETHER1,000 WEI = 1 (KILO)WEI
+1 (ATTO)ETHER = 0.000000000000000001 ETHER1 WEI
 
 ### Ref
 - [Rug pull](https://cointelegraph.com/explained/crypto-rug-pulls-what-is-a-rug-pull-in-crypto-and-6-ways-to-spot-it)

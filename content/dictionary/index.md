@@ -42,6 +42,9 @@ token을 wrap해서 다른 블록체인에서 사용할 수 있게 한다. 각�
 Wrapped token은 100% token이 represent하고 있는 real asset이 backed된 토큰이다. (collateral 혹은 stable coin과 비슷한 의미를 지닌다.)
 
 
+### Ref
+[Rug pull](https://cointelegraph.com/explained/crypto-rug-pulls-what-is-a-rug-pull-in-crypto-and-6-ways-to-spot-it)
+[Youtube Channel](https://www.youtube.com/channel/UCsYYksPHiGqXHPoHI-fm5sg)
 
 ```toc
 

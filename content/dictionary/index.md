@@ -41,10 +41,18 @@ Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환�
 token을 wrap해서 다른 블록체인에서 사용할 수 있게 한다. 각각의 블록체인들은 token을 갖고 있는데 해당 블록체인에 있는 token은 다른 블록체인에서 이용하기 어렵기떄문에 만들어졌다.
 Wrapped token은 100% token이 represent하고 있는 real asset이 backed된 토큰이다. (collateral 혹은 stable coin과 비슷한 의미를 지닌다.)
 
-### gas & GWEI
+### gas
 가스란 이더리움이 하는 일을 수치화한 단위 값이고 가스 가격에 가스 한도를 곱하면 거래 비용을 알 수 있다.(채굴자에게 돈을 지불하기 위해 Gwei라는 이더리움의 작은 값으로 단위를 나타냅니다. 이것이 가스 가격(Gas Price)이다.) 
 ETH의 가격과 트랜잭션 가격을 분리함으로써 트랜잭션 비용이 비싸지는 것을 방지할 수 있고 마이너들은 네트워크 보안에 대해 보상받으므로 이더리움이 끊임없이 돌아갑니다.
 트랜잭션 비용을 직접 입력하거나 사용하는 앱이 주어지는 값을 사용할 수도 있으며, 작업의 양을 알려줌으로써 채굴자들이 우선순위를 선택할 수 있게 도와준다.
+
+### GWEI
+1원이 원화의 가장 작은 단위인 것처럼 이더의 가장 작은 단위는 wei이다. 1 wei가 1이더가 되기 위해선 엄청나게 많은 wei가 필요하다.(정확하게는 10^18wei가 필요하다.)
+
+0^9 wei는 Gwei이며 Gwei는 가스 (네트워크 거래 수수료)에 대해 말할 때 가장 일반적으로 사용된다. 가스 비용이 0.000000001 이더라고 말하기보다는 1gwei라고 간편하게 말할 수 있다.
+
+wei에서 시작해서 10^n 으로 올리거나 이더에서 소수점으로 내려서 액면가를 표현한다.
+
 ### Ref
 - [Rug pull](https://cointelegraph.com/explained/crypto-rug-pulls-what-is-a-rug-pull-in-crypto-and-6-ways-to-spot-it)
 - [Youtube Channel](https://www.youtube.com/channel/UCsYYksPHiGqXHPoHI-fm5sg)

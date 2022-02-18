@@ -32,7 +32,8 @@ Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환�
 
 ### mining pool
 
-### rug pool
+### rug pull
+개발자가 발행한 토큰의 가격을 올려놓고 투자자의 자금을 갖고 사라지는 crypto scam
 
 ### impermanent loss
 

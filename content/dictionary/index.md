@@ -42,13 +42,13 @@ token을 wrap해서 다른 블록체인에서 사용할 수 있게 한다. 각�
 Wrapped token은 100% token이 represent하고 있는 real asset이 backed된 토큰이다. (collateral 혹은 stable coin과 비슷한 의미를 지닌다.)
 
 ### gas & GWEI
-가스란 이더리움이 하는 일을 수치화한 단위 값이고 가스 가격에 가스 한도를 곱하면 거래 비용을 알 수 있다.
+가스란 이더리움이 하는 일을 수치화한 단위 값이고 가스 가격에 가스 한도를 곱하면 거래 비용을 알 수 있다.(채굴자에게 돈을 지불하기 위해 Gwei라는 이더리움의 작은 값으로 단위를 나타냅니다. 이것이 가스 가격(Gas Price)이다.) 
 ETH의 가격과 트랜잭션 가격을 분리함으로써 트랜잭션 비용이 비싸지는 것을 방지할 수 있고 마이너들은 네트워크 보안에 대해 보상받으므로 이더리움이 끊임없이 돌아갑니다.
 트랜잭션 비용을 직접 입력하거나 사용하는 앱이 주어지는 값을 사용할 수도 있으며, 작업의 양을 알려줌으로써 채굴자들이 우선순위를 선택할 수 있게 도와준다.
 ### Ref
-[Rug pull](https://cointelegraph.com/explained/crypto-rug-pulls-what-is-a-rug-pull-in-crypto-and-6-ways-to-spot-it)
-[Youtube Channel](https://www.youtube.com/channel/UCsYYksPHiGqXHPoHI-fm5sg)
-[weth](https://weth.io/kr/)
+- [Rug pull](https://cointelegraph.com/explained/crypto-rug-pulls-what-is-a-rug-pull-in-crypto-and-6-ways-to-spot-it)
+- [Youtube Channel](https://www.youtube.com/channel/UCsYYksPHiGqXHPoHI-fm5sg)
+- [weth](https://weth.io/kr/)
 
 ```toc
 

@@ -38,6 +38,8 @@ Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환�
 ### mining pool
 일반적인 컴퓨터로 ethereum을 mining하기 위해서는 상당히 오랜 시간이 걸리는데, mining을 진행하여 당장 reward를 받기 위해서 mining을 하고자하는 많은 사람들울 모아서 그 block에서 그룹지어 한번에 mining을 한다. solution을 찾게되어 reward를 받으면 그것을 나누어 갖게된다.
 
+짧은 시간 내에 reward를 받는 것이 목적이다.
+
 ### rug pull
 개발자가 발행한 토큰의 가격을 올려놓고 투자자의 자금을 갖고 사라지는 crypto scam
 

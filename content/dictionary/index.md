@@ -12,9 +12,11 @@ categories: BlockChain
 (e.g uniswap은 이전에 protocol을 사용한 사용자들의 wallet address를 list up해서(testers 혹은 early adaptor에게) 자신들의 token을 무료로 전송했다.)
 
 ### proof of work & proof of stake
+proof of work란 특정한 수를 맞출 때까지 복잡한 퍼즐을 추측하고 검사하는 과정을 말한다.
+비트코인에서는 랜덤으로 섞인 수와 문자를 SHA-256으로 해시하여 특정 개수는 0을 찾는 과정을 진해하고 알맞을 결과를 맞추게 되면 그 block을 solve(문제를 풀면 reward를 받게 된다.)했다고 하며, 그 block을 블록체인에 추가된다.
 proof of work: race를 위해 사람들이 줄지어있다고 가정했을 때 그 사람들 중 유독 그 race에 강점을 갖고 있는 사람이 있고 경합을 할 경우 그 사람이 우승해서 reward를 받게 되며 나머지 우승하지 못한 사람들은 reward를 받지 못한 채 에너지를 낭비하게 된다.
 
-but, proof of stake: race를 위한 사람들중 단 한명만을 뽑아서 그 race를 진행하게 하여 완료 후 reward를 받게 되고 reward를 받지 못한 사람들은 에너지를 낭비하지 않게 된다.
+but, proof of stake: race를 위한 사람들중 단 한명만을 뽑아서 그 race를 진행하게 하여 완료 후 reward를 받게 되고 reward를 받지 못한 사람들은 race를 진행하지 않았기 때문에 에너지를 낭비하지 않게 된다.
 
 ### staking 
 proof of work에 참여하기 위해서는 coin을 담보로 lock을 걸어서 사용하지 못하게 하고 network가 mining을 할 수 있도록 선택할 때까지 기다린다. 후에 선택되어 성공적으로 mining을 하게 된다면 Staking reward를 받게 된다. 만약 틀리게 되면 locked 된 코인을 다른 참여자에게 나눠주게 된다.
@@ -33,9 +35,8 @@ Investor가 해당 pool에 토큰을 제공할 수 있으며 investor는 교환�
 ### arbitrage trading
 한 pool 에서 trader 대량으로 ether를 제공하여 ether 가격이 낮아져서 250달러인데  다른 pool에서 ether를 300달러에 팔 수 있다면 해당 pool에서 ether를 구매해서 다른 pool에 차액을 얻고 파는 방식을 말한다.
 
-
-
 ### mining pool
+일반적인 컴퓨터로 ethereum을 mining하기 위해서는 상당히 오랜 시간이 걸리는데, mining을 진행하여 당장 reward를 받기 위해서 mining을 하고자하는 많은 사람들울 모아서 그 block에서 그룹지어 한번에 mining을 한다. solution을 찾게되어 reward를 받으면 그것을 나누어 갖게된다.
 
 ### rug pull
 개발자가 발행한 토큰의 가격을 올려놓고 투자자의 자금을 갖고 사라지는 crypto scam

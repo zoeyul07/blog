@@ -51,7 +51,7 @@ nest new
 - create()메서드는 INestApplication Interface를 수행하는 application object를 반환하며, 해당 오브젝트는 다양한 methods set을 제공한다.
 
 ```typescript
-src/main.ts
+src / main.ts;
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
@@ -65,7 +65,7 @@ bootstrap();
 #### app.module.ts
 
 ```typescript
-src/app.module.ts
+src / app.module.ts;
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -76,7 +76,6 @@ import { AppService } from './app.service';
   providers: [AppService],
 })
 export class AppModule {}
-
 ```
 
 #### app.controller.ts
@@ -150,7 +149,7 @@ export class AppController {
 #### app.service.ts
 
 ```typescript
-src/app.service.ts
+src / app.service.ts;
 
 import { Injectable } from '@nestjs/common';
 
@@ -159,8 +158,8 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
-  getHi():string{
-  	return 'Hi nest '
+  getHi(): string {
+    return 'Hi nest ';
   }
 }
 ```
@@ -180,7 +179,7 @@ export class AppService {
 - ValidationPipe와 그걸로 검사하는 CreateMovieDto를 사용하여 typescript로 실시간 코드의 유효성을 체크할 수 있다.
 
 ```typescript
-create-movie.dto.ts
+create - movie.dto.ts;
 
 import { IsNumber, IsString } from 'class-validator';
 
@@ -197,7 +196,7 @@ export class CreateMovieDto {
 ```
 
 ```typescript
-main.ts
+main.ts;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -258,7 +257,7 @@ export class UpdateMovieDto extends PartialType(CreateMovieDto) {}
 - 여러가지 모듈을 import 할 수 있고, nest.js가 앱을 구동하면 하나의 모듈로 생성해준다.
 
 ```typescript
-app.module.ts
+app.module.ts;
 
 import { Module } from '@nestjs/common';
 
@@ -270,7 +269,6 @@ import { MoviesModule } from './movies/movies.module';
   providers: [],
 })
 export class AppModule {}
-
 ```
 
 - providers: Nest의 injector에 의해 인스턴스화되고, 인스턴스들은 이 모듈 안에서 최소한으로 공유된다.
@@ -280,7 +278,7 @@ export class AppModule {}
 - exports: 다른 모듈에서 import 할 때 사용된다.
 
 ```typescript
-movies.module.ts
+movies.module.ts;
 
 import { Module, Global } from '@nestjs/common';
 import { MoviesController } from '../movies/movies.controller';
@@ -289,7 +287,6 @@ import { MoviesService } from '../movies/movies.service';
 @Global()
 @Module({ controllers: [MoviesController], providers: [MoviesService] })
 export class MoviesModule {}
-
 ```
 
 - 여러 Provider들 집합을 어디서든 제공해주고 싶다면 @Global()를 사용하여 모듈을 global로 만든다.
@@ -311,22 +308,12 @@ import { MoviesService } from '../movies/movies.service';
 
 @Module({ controllers: [MoviesController], providers: [MoviesService] })
 export class MoviesModule {}
-
 ```
 
 ```typescript
 //movies.controllers.ts
 
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Patch,
-  Body,
-  Query,
-} from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Patch, Body, Query } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
@@ -383,7 +370,7 @@ export class MoviesService {
     return this.movies;
   }
   getOne(id: number): Movie {
-    const movie = this.movies.find(movie => movie.id === id);
+    const movie = this.movies.find((movie) => movie.id === id);
     if (!movie) {
       throw new NotFoundException(`movie with ID ${id} not found`);
     }
@@ -392,7 +379,7 @@ export class MoviesService {
 
   deleteOne(id: number) {
     this.getOne(id);
-    this.movies = this.movies.filter(movie => movie.id !== id);
+    this.movies = this.movies.filter((movie) => movie.id !== id);
   }
 
   create(movieData: CreateMovieDto) {
@@ -408,7 +395,6 @@ export class MoviesService {
     this.movies.push({ ...movie, ...updateData });
   }
 }
-
 ```
 
 ### Express on NestJS

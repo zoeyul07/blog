@@ -681,6 +681,8 @@ function add(uint256 num, uint256 num2) public returns(uint256 result) {
 
 - payable: 코인과 상호작용, 즉 송금시 사용되는 키워드로 send, transfer, call 을 이용하여 이더를 보낼 때 이 키워드가 필요하며, 주로 함수, 주소, 생성자에 붙여서 사용된다.
 
+- uint256(-1): By 2s-complement, uint256(-1) is equal to the maximum value of uint256.
+
 ### fallback, receive
 
 #### fallback

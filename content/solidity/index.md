@@ -3,8 +3,8 @@ emoji: ''
 title: 'Ethereum Smart Contract: Solidity'
 date: '2022-01-20 22:00:00'
 author: seoyul
-tags: blockchain
-categories: BlockChain
+tags: blockchain language
+categories: BlockChain language
 ---
 
 ## solidity

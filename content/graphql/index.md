@@ -1,7 +1,7 @@
 ---
 emoji: ''
-title: 'Graphql'
-date: '2020-09-21 22:00:00'
+title: 'GraphqlL: basic'
+date: '2020-09-14 22:00:00'
 author: seoyul
 tags: backend
 categories: backend
@@ -9,306 +9,144 @@ categories: backend
 
 ## GraphQL
 
-- 클라이언트가 필요한 데이터를 정확하게 특정하여 API에 요청하는 선언적인 데이터 불러오기를 가능하게 만드는 것이다. 
-
-- 고정된 형태의 데이터 구조를 반환하는 엔드포인트를 여러개 제공하는 것이 아니라 단 하나의 엔드포인트만을 노출시키고, 클라이언트가 요청한 데이터들만을 정확하게 반환한다. (필요한 데이터가 무엇인지 서버에 알려주기 위해서 클라이언트가 보다 많은 정보를 보내야 한다.)
+- 클라이언트가 필요한 데이터를 정확하게 특정하여 API에 요청하는 선언적인 데이터 불러오기를 가능하게 만드는 것이다. 고정된 형태의 데이터 구조를 반환하는 엔드포인트를 여러개 제공하는 것이 아니라 단 하나의 엔드포인트만을 노출시키고, 클라이언트가 요청한 데이터들만을 정확하게 반환한다.(필요한 데이터가 무엇인지 서버에 알려주기 위해서 클라이언트가 보다 많은 정보를 보내야 한다.)
 
 - GraphQL은 데이터베이스 관련 기술이 아닌 API를 위한 쿼리 언어이다. 데이터베이스의 종류와 상관 없이 작동하며, 효율적으로 사용될 수 있다.
-
-- 모바일 사용의 증가로 인한 효율적인 데이터 로딩의 필요성을 위해서 네트워크 상에서 전송되어야 하는 데이터의 양을 최소화하고 어플리케이션의 퍼포먼스를 대체적으로 향상시켜준다.
-
+- 모바일 사용의 증가로 인한 효율적인 데이터 로딩의 필요성을 위해서 네트워크 상에서 전송되어야 하는 데이터의 양을 최소화하고  어플리케이션의 퍼포먼스를 대체적으로 향상시켜준다.
+- REST API를 사용할 때는, 클라이언트측의 특정 요구사항이나 설계 변경에 대응하기 위하여 서버의 데이터를 노출시키는 방법을 변경해야 하는 경우가 종종 발생한다. 이로 인해 빠른 개발 및 제품 순환이 방해받게 된다.(오늘날의 클라이언트의 급변하는 요구사항들을 만족시키기에는 유연서이 부족하다.)
+- REST를 사용하면 필요한 데이터를 불러오기 위하여 엔드포인트를 여러번 요청해야하며 필요없는 정보까지 가져오게될 수 있는데(고정된 데이터 구조를 반환하기 때문에), GraphQL에서는 구체적인 데이터 요구사항을 포함한 딱 하나의 쿼리를 graphQL 서버에 보내게 되며 서버는 요구사항에 일치하는 json 객체를 반환해준다.(클라이언트에게 필요한 데이터를 쿼리에 정확히 특정해줄 수 있으며, 서버로부터 반환도니 데이터의 구조가 쿼리에 정의된 중첩 구조를 정확히 따른다.)
 - UI를 조금이라도 바꾸면 필요한 데이터가 변할수도 있기 때문에 그럴 경우 백엔드에서 대응해야 하는데, graphql을 사용하면 서버에서 추가로 작업하지 않더라도 클라이언트를 수정할 수 있다.
 
-#### Client
+### overfetch & underfetch
 
-- 주로 사용되는 graphql 클라이언트로는 apllo, relay가 있다. apollo는 graphql 클라이언트를 모든 주요 개발 플랫폼에서 사용할 수 있도록 하겠다는 방향성 아래 형성된 커뮤니티에 의해서 개발이 이루어지고 있고, relay는 페이스북이 개발한 graphql 클라이언트로 성능 최적화가 이루어져 있으며, 오직 웹에서만 사용 가능하다.
+#### overfetch
 
-### GraphQL로 해결할 수 있는 문제
-- 개발자가 어떤 정보를 원하는지에 대해 통제할 수 있다.
+- 실제로 필요한 것보다 더 많은 정보를 클라이언트가 다운받는다.(응답 데이터에는 실제로 필요없는 정보가 포함되어 있을 수 있다.)
 
-#### over-fetching
-- 요청한 영역의 정보보다 많은 정보를 서버에서 전달받는다. (응답 데이터에는 실제로 필요없는 정보가 포함되어 있을 수 있다.)
-
-#### under-fetching
-- 어떤 하나를 완성하기 위해 다른 요청을 해야할 경우 (REST에서 하나를 완성하기 위해 많은 소스를 요청한다.)
+#### underfetch / N+1 Problem
 
 - 특정 엔드포인트가 필요한 정보를 충분히 제공하지 못하는 경우를 말하며 필요한 정보를 모두 확보하기 위해서 추가적인 요청을 보내야 한다.
 
-## Schema
-- 사용자에게 보내거나 사용자로부터 받을 데이터에 대한 설명으로 schema.graphql 파일에서 사용자가 뭘 할지에 대해서 정의한다. (API가 할 수 있는 행위를 정해주고, 클라이언트가 데이터를 요청하는 방법을 정의한다.)
+### Schema Definition Language(SDL)
 
-- query는 단지 정보를 받을때만 쓰인다.
+- 간단한 타입을 정의하며 필수 값을 설정할 수 있고, 연관관계를 가질 수 있다.
 
-- mutation(변형)은 정보를 변형할 때, 서버에서 혹은 데이터베이스에서, 메모리에서 정보를 바꾸는 작업을 할 때를 사용된다.(백엔드에 저장된 데이터를 수정하느느 것으로 create, update, delete를 수행한다.)
+#### object & scalar 
 
-```graphql
-//graphql/schema.graphql
-//어떤 사용자가 query에 name을 보내면 string을 보낸다는 설명
+- scalar 타입은 실체가 있는 데이터 단위를 나타낸다. (string, int, float, boolen, id)
+- object 타입은 해당 타입의 특성을 표현하는 필드들로 구성된다.
 
-type Seoyul {
-  name: String!
-  age: Int!
-  gender: String!
-}
+#### Enums
 
-type Query {
-  person: Seoyul!
-}
+- enumeration(열거)를 타입이란 일정한 값들의 집합에 대하여 의미를 표현할 수 있는 언어 기능이며 스칼라 타입의 특별한 종류 중 하나이다. (한주의 요일들을 나타내기 위하여 Weekday 라는 타입을 정의할 수 있다.)
 
+#### interface
 
-```
-## Resolver
-- query를 resolve 한다. 쿼리는 데이터베이스에게는 문제와 같으며 이 쿼리를 어떤 방식으로 resolve 해야한다.
+- 타입을 추상적인 방식으로 설명할 수 있으며 해당 인터페이스를 구현하는 타입이 반드시 가져야하는 필드에 대하여 정의한다.
+- 대부분의 스키마에서 타입에는 id 필드가 필요한데, 이러한 요구사항은 해당 필드가 포함된 인터페이스를 정의하고, 모든 타입들이 이 인터페이스를 반드시 구현하도록 함으로써 충족될 수 있다.
 
-- 그래프큐엘 서버를 구현할 때 각각의 필드들은 resolver라고 불리는 함수에 대응하게 되는데, 이 함수의 목적은 해당 필드를 위한 데이터를 불러오는 것이다.
+#### union
 
-- 서버가 쿼리를 받았을 때 쿼리 페이로드 상에 명시된 각 필드들에 대한 함수들을 모두 호출하게 되는데, 이를 통해 쿼리를 resolve하고 각 필드에 대하여 올바른 데이터를 반환할 수 있게 된다. 
+- 어떤 타입이 여러 타입 중 하나이어야 함을 나타낼 때 사용한다.
 
-- 모든 resolver들이 값을 반환하면 서버는 쿼리 상에 서술된 형태로 데이터들을 포장한 뒤 클라이언트에 반환해준다.
+### 데이터 불러오기
 
-```js
-//graphql/resolvers.js
-//사용자가 name query를 보내면 seoyul을 반환하는 함수로 답한다.
+- 쿼리문은 루트 필드(root field)와 그 아래로 값들을 가리키는 페이로드(payload)가 있다.
 
-const seoyul = {
-  name: "Seoyul",
-  age: 27,
-  gender: "female"
-}
+### 인자를 담아서 쿼리문 보내기
 
-const resolvers = {
-  Query: {
-    person: () => seoyul
-  }
-}
+- 각 필드가 스키마에 정의된 규칙에 따라 인자를 가질 수 있다.(반환되는 데이터 수를 제한할 수 있다.)
 
-export default resolvers
-```
+### Mutation으로 데이터 기록하기
 
-> GraphQL Playground 
-- Postman과 비슷하게 데이터베이스를 테스트할 수 있으며 localhost:4000에서 확인 가능하다.
+- 백엔드에 저장된 데이터를 수정하는 것을 Mutation이라고 한다.(create, update, delete)
+- 쿼리문과 동일하 문법 구조를 가지지만 반드시 mutation 키워드와 함께 시작해야 한다.
+- mutation도 루트필드를 가지며, 그 필드는 인자를 가질 수 있다.
+- 쿼리문과 마찬가지로 페이로드를 지정할 수 있는데, 객체가 가지는 속성들 중 선택하여 값을 확인할 수 있다. 또한 인자로 값을 전달함과 동시에 정보를 불러오기가 가능하여 서버로 요청을 한번만 보내고도 새로운 정보를 반환받을 수 있다.
+- 새로운 객체가 생성될 때 서버가 생성해준 고유한 ID값을 그래프큐엘 타입이 갖게되며 뮤테이션의 페이로드를 통하여 id의 값을 직접 요청할 수 있다.
 
-## index.js
-```js
-import {GraphQLServer} from "graphql-yoga";
-import resolvers from "./graphql/resolvers"
+### subscription(구독)
 
-const server = new GraphQLServer({
-  typeDefs: "graphql/schema.graphql",
-  resolvers
-})
-
-server.start(() => console.log("graphql sever running")) 
-```
-***
-## 특정 아이디 값을 갖고 있는 데이터 불러오기
-- graphql resolvers는 graphql 서버에서 요청을 받으며 graphql 서버가 query나 mutation의 정의를 발견하면 resolver를 찾고 해당 함수를 실행한다.
-
-```js
-//db.js
-
-export const people = [
-  {
-    id: 0,
-    name: "Seoyul",
-    age: 27,
-    gender: "female"
-  },
-  {
-    id: 1,
-    name: "hello",
-    age: 27,
-    gender: "female"
-  },
-  {
-    id: 2,
-    name: "my",
-    age: 27,
-    gender: "female"
-  },
-  {
-    id: 3,
-    name: "name",
-    age: 27,
-    gender: "female"
-  },
-  {
-    id: 4,
-    name: "is",
-    age: 27,
-    gender: "female"
-  },
-  {
-    id: 5,
-    name: "Seoyul",
-    age: 27,
-    gender: "female"
-  }
-]
-
-export const getById = id => {
-  const filterPeople = people.filter(person => person.id === id)
-  return filterPeople[0]
-}
-
-```
-
-```graphql
-//schema.graphql
-type Person {
-  id: Int!
-  name: String!
-  age: Int!
-  gender: String!
-}
-
-type Query {
-  people: [Person]!
-  person(id: Int!): Person
-}
-
-```
-
-```js
-//resolvers.js
-import {getById, people} from "./db"
-
-const resolvers = {
-  Query: {
-    people: () => people,
-    person: (_, {id})=> getById(id)
-  }
-}
- 
-export default resolvers
-```
-- 위와 같이 파일들을 생성하고 서버를 돌려 localhost:4000에서 다음과 같이 쿼리를 날린다.
-```graphql
-{
-  person(id:3){
-    name
-  }
-}
-```
-
-- 그러면 다음과 같은 결과가 나온다.
-```graphql
-{
-  "data": {
-    "person": {
-      "name": "name"
-    }
-  }
-}
-```
-## Mutation
-- 데이터베이스 상태가 변할 때 사용된다.
-```
-//shema.graphql
-
-type Movie {
-  id: Int!
-  name: String!
-  score: Int!
-}
-
-type Query {
-  movies: [Movie]!
-  movie(id: Int!): Movie
-}
-
-type Mutation {
-  addMovie(name: String!, score: Int!): Movie!
-  deleteMovie(id: Int!): Boolean!
-}
-
-```
-
-```
-//resolvers.js
-
-import {getMovies, getById, addMovie, deleteMovie } from "./db"
-
-const resolvers = {
-  Query: {
-    movies: () => getMovies(),
-    movie: (_, {id})=> getById(id)
-  },
-  Mutation:{
-    addMovie:(_, {name, score})=> addMovie(name, score),
-    deleteMovie:(_, {id}) => deleteMovie(id)
-  }
-};
- 
-export default resolvers
-```
-
-```
-//db.js
-
-let movies = [
-    {
-      id: 0,
-      name: "Star Wars - The new one",
-      score: 1
-    },
-    {
-      id: 1,
-      name: "Avengers - The new one",
-      score: 8
-    },
-    {
-      id: 2,
-      name: "The Godfather I",
-      score: 99
-    },
-    {
-      id: 3,
-      name: "Logan",
-      score: 2
-    }
-  ];
-  
-  export const getMovies = () => movies;
-  
-  export const getById = id => {
-    const filteredMovies = movies.filter(movie => movie.id === id);
-    return filteredMovies[0];
-  };
-  
-  export const deleteMovie = id => {
-    const cleanedMovies = movies.filter(movie => movie.id !== id);
-    if (movies.length > cleanedMovies.length) {
-      movies = cleanedMovies;
-      return true;
-    } else {
-      return false;
-    }
-  };
-  
-  export const addMovie = (name, score) => {
-    const newMovie = {
-      id: `${movies.length}`,
-      name,
-      score
-    };
-    movies.push(newMovie);
-    return newMovie;
-  };
-
-```
-
-## subscription
-- subscription은 주로 실시간(real-time) 애플리케이션을 구현하기 위해서 사용된다.
-
-- query와 mutation은 서버/클라이언트(server/client) 모델을 따르는 반면에, subscription은 발행/구독(publish/subscribe) 모델을 따른다. (서버와의 실시간 통신을 통한 업데이트를 위햐여 구독이라는 개념을 제공한다.)
-
-- 클라이언트가 어떤 이벤트를 구독하면 서버와 지속적인 연결을 형성하고 유지하게되며 특정 이벤트가 발생했을 시 서버는 대응하는 데이터를 클라이언트에 푸시해준다.
-
+- 서버와의 실시간 통신을 통한 업데이트를 위햐여 구독이라는 개념을 제공한다.
+- 클라이언트가 어떤 이벤트를 구독하면 서버와 지속적인 연결을 형성하고 유지하게되며 특정 이벤트가 발생했을 시 서버는 대응하는 데이터를 클라이언트에 푸시해준다. (전형적인 요청-응답 순환을 따르는 쿼리문아니 뮤테이션과 달리 구덕은 클라이언터를 향한 데이터 흐름을 나타낸다.)
 - 쿼리문, 뮤테이션과 동일한 문법을 사용하여 작성되며, 새로운 뮤테이션이 이루어질때마다 서버는 새로운 정보를 클라이언트에 전송하게 된다.
 
-***
-[graphql-yoga github](https://github.com/prisma-labs/graphql-yoga)
+### schema
+
+- API가 할 수 있는 행위를 정해주고, 클라이언트가 데이터를 요청하는 방법을 정의한다. 
+- 대부분의 경우 스키마는 GraphQL 타입들의 집합이지만 API를 위한 스키마를 작성할 때는 특별한 루트 타입이 존재한다.
+
+### Resolver 함수
+
+- 쿼리의 페이로드는 필드들의 집합으로 구성된다. 그래프큐엘 서버를 구현할 때 각각의 필드들은 resolver라고 불리는 함수에 대응하게 되는데, 이 함수의 목적은 해당 필드를 위한 데이터를 불러오는 것이다.
+- 서버가 쿼리를 받았을 때 쿼리 페이로드 상에 명시된 각 필드들에 대한 함수들을 모두 호출하게 되는데, 이를 통해 쿼리를 resolve하고 각 필드에 대하여 올바른 데이터를 반환할 수 있게 된다. 모든 resolver들이 값을 반환하면 서버는 쿼리 상에 서술된 형태로 데이터들을 포장한 뒤 클라이언트에 반환해준다.
+
+### Client
+
+- 주로 사용되는 graphql 클라이언트로는 apllo, relay가 있다. apollo는 graphql 클라이언트를 모든 주요 개발 플랫폼에서 사용할 수 있도록 하겠다는 방향성 아래 형성된 커뮤니티에 의해서 개발이 이루어지고 있고, relay는 페이스북이 개발한 graphql 클라이언트로 성능 최적화가 이루어져 있으며, 오직 웹에서만 사용 가능하다.
+- 리액트에서 그래프큐엘을 사용하게 된다면, 고차 컴포넌트 개념을 사용하여 필요한 데이터를 가져온 뒤 컴포넌트에 props 형태로 제공하는 일련의 방식을 보이지 않게 처리하며, graphql의 선언적인 특성은 일반적으로 함수형 반응형 프로그래밍 기법과 잘어울린다.
+
+#### 쿼리 결과 캐싱
+
+- 서버에서 막 불러온 데이터라면 사용자의 통신 부담을 경감시키기 위해서 캐싱하여 보관하는 것이 바람직하다. 데이터 캐싱의 직관적인 형태는 원격에서 불러온 정보를 나중에 다시 읽어들일 수 있는 로컬 스토어에 보관하는 것인데(쿼리 결과를 스토어에 넣고 동일한 쿼리가 발생할 때마다 직전에 보과된 데이터를 반환한다.), 이러한 접근방식은 비효율 적이기 때문에 데이터를 미리 정규화하는 것이 좋다. 즉, 전역적인 고유 ID로 참조될 수 있도록 만든 개별 데이터만을 스토어에 저장한다.
+
+#### schema 검사 및 최적화
+
+- 스키마는 클라이언트가 graphql api를 사용하여 어떤것을 할 수 있는지를 모두 담고 있으며 클라이언트가 전송할 쿼리를 검사하고 최적화하는 작업을빌드 시간에 미리 수행할 수 있다.
+- 빌드 환경이 스키마에 접근할 수 있다면 이를 통하여 어플리케이션이 실제 사용자에게 전달되기 앞서 오류를 수정하고 사전에 예방할 수 있다.
+
+### server
+
+- 그래프큐엘 사용시 서버 개발자는 특정 엔드포인트를 구현하거나 최적화하는 작업보다는 사용 가능한 데이터를 서술하는데 집중할 수 있게된다.
+- 각 쿼리가 쿼리 결과로 어떻게 변환되는지에 대한 실제 실행 알고리즘을 규정하며, 쿼리의 모든 필드가 순회되면서 각 필드에 대하여 resolver가 실행된다.
+- 쿼리 내의 각 필드마다 대응하는 타입을 연관지을 수 있다. 서버측에서는 각 필드에 필요한 리졸버를 쉽게 파악할 수 있고, 쿼리의 실행은 쿼리 타입에서 시작하여 너비-우선으로 이루어진다.(루트부터 시작하여 리졸브가 가장 먼저 실행되며 리졸버의 결과를 받아서 자음 자식 요소의 리졸버에 전달한다.(결과가 리스트일 경우 한번에 한 항목씩 리졸버가 실행된다.))
+- 과정을 모두 마친 뒤에는 모든 결과를 모아서 올바른 형태로 정리한 뒤 이를 반환하며, 서버의 대부분은 기존 리졸버를 제공하므로 모든 필드들에 대하여 일일이 리졸버 함수를 정해줄 필요는 없다.(리졸버의 상위 객체가 올바른 이름으로 된 필드를 포함하고 있다면, 리졸버를 정해주지 않아도 된다.)
+
+#### 일괄 리졸브 작업
+
+- 백엔드 api 또는 데이터베이스로부터 데이터를 불러오는 리졸버가 있고 해당 백엔드는 쿼리가 한번 실행될 때에 여러 차례 호출될 수 있는 상황을 가정했을 때 모든 리졸버가 실행되기까지 기다렸다가 각 항목에 대하여 한번씩만 블러오는 유틸리티 함수를 만들어서 사용할 수 있다.
+
+### More About GraphQL
+
+#### Fragment를 사용하여 재사용성 향상
+
+- fragment는 graphql 코드의 구조와 재사용성을 향상시키는데에 도움을 주는 편리한 기능이며 특정 타입의 필드들로 이루어진 집합이다.
+
+#### 인자를 사용하여 필드를 매개변수화
+
+- 필드에 인자를 추가하여 특정 조건을 필터링 하여 포함하도록 만들 수 있고, 인자가 전달되지 않을 경우 반환될 기본값을 부여할 수 있다.
+
+#### Alias를 이용한 쿼리 결과의 명명
+
+- 그래프큐엘의 강점 중 하나는 한번의 요청으로 다수의 쿼리를 전송할 수 있다는 것인데 요청되는 필드의 구조에 맞추어 응답 데이터의 구조가 형성되므로 같은 필드에 대한 여러 쿼리를 전송할 경우 이름이 겹치는 문제가 발생할 수 있다.
+- 다른 인자들을 사용하여 같은 필드에 대해 요청하게 되면 서버에서 오류를 발생시키게 되는데, 이러한 쿼리를 전송하려면 alias를 사용해야 한다.(쿼리 결과에 대해 이름을 부여한다.)
+
+#### GraphQL Playground
+
+- GraphQL API 와 상호작용할 수 있는 Graph IDE이다. 그래프큐엘 쿼리, 뮤테이션, 구독 등을 작성할 수 있는 에디터 기능과 자동 완성 및 코드 검사 긴으과 스키마 구조를 빠르게 시각화할 수 있는 문서 탐색기 기능까지 제공한다.
+
+### security
+
+- 클라이언트에서 복잡한 쿼리를 만들 수 있게 되면서 서버 또한 이에 적절하게 대처해야 한다. 클라이언테가 잠재적으로 서버를 느리게 만들 수 있을 경우에 대처하기 위해서 다음과 같은 전략들을 사용할 수 있다.
+
+#### 시간제한
+
+- 구현이 쉽지만 실행이 멈추더라도 서버에 대한 피해를 톨이킬 수 없고, 일정 시간이 흐른 뒤 통신을 끊는 것은 이상한 동작을 유발할 수 있다.
+
+#### 최대 쿼리 깊이
+
+- 클라이언트가 악의적인 쿼리 깊이를 만들어내는 것을 미리 방지하기 위해 서버로 들어온 쿼리의 깊이를 기반으로 실행을 허용하거나 거절할 수 있다.
+- AST(Abstract Syntax Tree)는 정적으로 분석되므로 쿼리는 실해이 일절 일루어지지않고 서버에는 아무런 부담이 발생하지 않는다.
+
+#### 쿼리 복잡도
+
+- 쿼리 복잡도를 사용하면 필드가 얼마나 복잡한지 정의할 수 있고, 최대 복잡도를 기반으로 쿼리를 제한할 수 있다.(각 필드의 개수를 세는 것으로 복잡한 정도를 정의하며 기본값으로는 각 필드에 대하여 1의 복잡도를 부여한다.)
+- 복잡도를 정적으로 분석함에 따라 쿼리가 실행되기 전에 미리 실행을 거절할 수 있지만 개발 시점에 복잡도를 측정한다면 이를 최신으로 유지기 위해 고려해야 하며, 뮤테이션은 복잡도를 측정하는 것이 어렵다.
+
+#### 쓰로틀링
+
+- 대분의 API에서는 간단한 쓰로틀링을 사용하여 너무 자주 이루어지는 요청을 막을 수 있다.
+- 서버시간에 기반한 쓰로틀링과 쿼리 복잡도에 기반한 쓰로틀링을 할 수 있다.
 
 ```toc
 

@@ -4,7 +4,7 @@ title: 'Reack: Hooks (useState, useRef, useEffect)'
 date: '2020-09-01 22:00:00'
 author: seoyul
 tags: frontEnd
-categories: frontEnd
+categories: FrontEnd
 ---
 
 ## Hooks

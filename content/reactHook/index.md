@@ -4,7 +4,7 @@ title: 'React:Hook'
 date: '2021-04-12 22:00:00'
 author: seoyul
 tags: frontEnd
-categories: frontEnd
+categories: FrontEnd
 ---
 
 ## Hook

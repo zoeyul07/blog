@@ -4,7 +4,7 @@ title: 'Apollo Client:cache'
 date: '2021-07-07 22:00:00'
 author: seoyul
 tags: frontEnd
-categories: frontEnd
+categories: FrontEnd
 ---
 
 ### InMemoryCache

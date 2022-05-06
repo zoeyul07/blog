@@ -4,7 +4,7 @@ title: 'react native'
 date: '2020-10-06 22:00:00'
 author: seoyul
 tags: frontEnd
-categories: frontEnd
+categories: FrontEnd
 ---
 
 ## React Native

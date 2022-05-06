@@ -4,7 +4,7 @@ title: 'Graphql: backend'
 date: '2020-09-21 22:00:00'
 author: seoyul
 tags: backend
-categories: backend
+categories: BackEnd
 ---
 
 ## GraphQL

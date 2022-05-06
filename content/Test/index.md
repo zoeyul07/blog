@@ -4,7 +4,7 @@ title: 'Front Test (feat:Cypress)'
 date: '2022-01-05 22:00:00'
 author: seoyul
 tags: frontEnd
-categories: frontEnd
+categories: FrontEnd
 ---
 
 ## 테스트의 기본

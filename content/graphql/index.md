@@ -1,6 +1,6 @@
 ---
 emoji: ''
-title: 'GraphqlL: basic'
+title: 'Graphql: basic'
 date: '2020-09-14 22:00:00'
 author: seoyul
 tags: backend

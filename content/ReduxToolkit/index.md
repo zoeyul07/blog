@@ -133,19 +133,20 @@ react-query 와 유사하게 백엔드에서 넘어온 데이터를 관리할 �
 프론트엔드만의 데이터 → createSlice 로 관리
 ```
 
+### reference
 [RTK QUERY](https://velog.io/@dlstjr1106/RTK-QUERY)
 
 [RTK Query) 시작하기](https://velog.io/@jungsangu/RTK-Query-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)
 
 [RTK Query Overview | Redux Toolkit](https://redux-toolkit.js.org/rtk-query/overview)
 
-### jwt authentication
+- jwt authentication
 
 [RTK Query Examples | Redux Toolkit](https://redux-toolkit.js.org/rtk-query/usage/examples)
 
 [React + Redux Toolkit: JWT Authentication and Authorization 2022](https://codevoweb.com/react-redux-toolkit-jwt-authentication-and-authorization/)
 
-### migrating to rtk query
+- migrating to rtk query
 
 [Migrating to RTK Query | Redux Toolkit](https://redux-toolkit.js.org/rtk-query/usage/migrating-to-rtk-query)
 

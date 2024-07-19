@@ -243,6 +243,8 @@ export function* counterSaga() {
 }
 ```
 
+### reference
+
 [[React] 17. Redux-Thunk](https://velog.io/@vvvvwvvvv/React-17.-Redux-Thunk-%EC%98%88%EC%A0%9C)
 
 [10. redux-saga](https://react.vlpt.us/redux-middleware/10-redux-saga.html)

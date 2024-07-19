@@ -1,4 +1,3 @@
-
 ---
 emoji: ''
 title: 'modal vs react-native-navigation'
@@ -7,6 +6,7 @@ author: seoyul
 tags: FrontEnd
 categories: FrontEnd
 ---
+
 # modal vs react-native-navigation
 
 ## modal

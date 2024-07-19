@@ -1,6 +1,6 @@
 ---
 emoji: ''
-title: '패키지 관리자: yarn berry , pnpm'
+title: 'package manager: yarn berry & pnpm'
 date: '2023-03-08 22:00:00'
 author: seoyul
 tags: FrontEnd

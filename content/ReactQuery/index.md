@@ -281,11 +281,13 @@ const todoListQuery = useQuery({
     - 홈화면 mydata 및 여러 api를 다 fetch 했는지 로딩 status 확인 및 로그인기능 코드에 적용 가능한지 확인
     - [**Query Client를 활용한 커스텀 훅](https://tech.kakao.com/2022/06/13/react-query/) 참고**
 
-## React Query로 client 상태 관리
 
-- [**react-query로 클라이언트 상태 관리 하기**](https://blog.hyunmin.dev/23)
 
 ### Reference
+
+- React Query로 client 상태 관리
+
+[**react-query로 클라이언트 상태 관리 하기**](https://blog.hyunmin.dev/23)
 
 - flipper devtools
 
@@ -319,7 +321,7 @@ const todoListQuery = useQuery({
 
 [React Query와 함께 Concurrent UI Pattern을 도입하는 방법 | 카카오페이 기술 블로그](https://tech.kakaopay.com/post/react-query-2/)
 
-### Redux to ReactQuery
+- Redux to ReactQuery
 
 [Store에서 비동기 통신 분리하기 (feat. React Query) | 우아한형제들 기술블로그](https://techblog.woowahan.com/6339/)
 
@@ -327,7 +329,7 @@ const todoListQuery = useQuery({
 
 [카카오페이 프론트엔드 개발자들이 React Query를 선택한 이유 | 카카오페이 기술 블로그](https://tech.kakaopay.com/post/react-query-1/#user-content-fn-2)
 
-### SWR vs ReactQuery
+- SWR vs ReactQuery
 
 [React에서 서버 데이터를 최신으로 관리하기(React Query, SWR)](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)
 

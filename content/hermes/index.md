@@ -1,6 +1,6 @@
 ---
 emoji: ''
-title: 'react-query'
+title: 'react-native: hermes'
 date: '2023-02-21 22:00:00'
 author: seoyul
 tags: FrontEnd

@@ -7,8 +7,6 @@ tags: FrontEnd
 categories: FrontEnd
 ---
 
-# redux
-
 ## Redux
 
 ### action

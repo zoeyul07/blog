@@ -1,6 +1,6 @@
 ---
 emoji: ''
-title: 'RTK Query '
+title: 'RTK Query'
 date: '2023-02-03 22:00:00'
 author: seoyul
 tags: FrontEnd

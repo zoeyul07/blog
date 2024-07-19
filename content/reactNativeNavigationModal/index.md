@@ -1,7 +1,7 @@
 ---
 emoji: ''
 title: 'modal vs react-native-navigation'
-date: '2022-12-1 22:00:00'
+date: '2022-12-01 22:00:00'
 author: seoyul
 tags: FrontEnd
 categories: FrontEnd

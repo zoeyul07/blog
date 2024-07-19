@@ -1,7 +1,7 @@
 ---
 emoji: ''
 title: 'react-native: env'
-date: '2022-11-29 22:00:00'
+date: '2022-11-29 21:00:00'
 author: seoyul
 tags: FrontEnd
 categories: FrontEnd

@@ -13,19 +13,19 @@ categories: FrontEnd
 
 - UI의 기본적인 블록으로서, 버튼, 텍스트, 아이콘 등과 같은 작은 컴포넌트를 의미한다.
 
-1. Molecules
+2. Molecules
 
 - Atom들을 결합한 것으로서, 검색창이나 로그인 폼 등과 같은 상대적으로 복잡한 컴포넌트를 의미한다.
 
-1. Organisms
+3. Organisms
 
 - Molecule들과 Atom들을 결합한 것으로서, 헤더나 푸터 등과 같은 전체 페이지의 레이아웃을 의미한다,.
 
-1. Templates
+4. Templates
 
 - 페이지 레이아웃을 정의하는데 사용되는, 여러 개의 Organisms와 Molecules를 결합한 것을 의미한다.
 
-1. Pages
+5. Pages
 
 - 실제로 사용자가 볼 수 있는 웹 페이지를 의미합니다. Template을 사용하여 구성되며, 필요한 데이터와 기능을 갖추고 있다.
 
@@ -44,8 +44,6 @@ organism은 UI에서 명확한 영역을 갖는다. 이 명확한 영역에 대�
 공통된 컨텍스트를 묶어 organism 컴포넌트로 표현하면 적당한 책임을 가진 컴포넌트를 작성할 수 있다. 
 
 ## Foundation, Elements, Modules and the Prototype
-
-Here is the high-level overview of how I like to structure and implement the individual parts:
 
 - **Foundation**: This is the basic layer of design tokens such as colors, typography, spacings, iconography and their like. Basically the non-component basics I have my trouble with when defined and categorized as atoms. Assigning them an explicit category and naming it foundation makes clear that this affects every piece of the system.
 - **Elements**: The “basic building block” components everyone thinks of when talking about atoms. Concretely they map to customized implementations of single HTML elements, like headings and buttons. But also these kinds of elements, that do not make any sense in HTML when used standalone, like list items. In this case a list would be the most non-dividable form and hence the element.
